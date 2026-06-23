@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackIT - Fórum de Mídias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+    <header class="bg-dark text-white p-3 mb-4 shadow-sm">
+        <div class="container d-flex justify-content-between align-content-center">
+            <h1 class="h3 m-0">💾 TrackIT</h1>
+            <span class="text-muted align-self-center">Painel de Controle v1.0</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="row">
+            
+            <div class="col-lg-8">
+                
+                <div class="card mb-4 square-forum-card">
+                    <div class="card-header bg-primary text-white font-weight-bold">
+                        📢 Últimas Mídias Adicionadas (Filmes & Séries)
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover m-0 align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Gênero</th>
+                                        <th>Ano</th>
+                                        <th>Tipo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabela-midias">
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted p-3">Carregando tópicos...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 square-forum-card">
+                    <div class="card-header bg-secondary text-white font-weight-bold">
+                        💬 Últimas Avaliações dos Usuários
+                    </div>
+                    <div class="card-body p-0" id="container-avaliacoes">
+                        <div class="text-center text-muted p-3">Nenhum comentário recente.</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="card mb-4 square-forum-card shadow-sm">
+                    <div class="card-header bg-success text-white small">🔑 Registrar Novo Membro (Usuário)</div>
+                    <div class="card-body bg-white">
+                        <form id="form-usuario">
+                            <div class="mb-2">
+                                <label class="form-label small text-muted mb-1">Nome de Exibição (Nickname)</label>
+                                <input type="text" class="form-control form-control-sm font-monospace" id="usr-nome" required placeholder="Ex: Bob_Muller">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small text-muted mb-1">E-mail</label>
+                                <input type="email" class="form-control form-control-sm font-monospace" id="usr-email" required placeholder="Ex: bob@email.com">
+                            </div>
+                            <input type="hidden" id="usr-senha" value="senha_padrao_123">
+                            <button type="submit" class="btn btn-success btn-sm w-100">Registrar no Fórum</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="card mb-4 square-forum-card shadow-sm">
+                    <div class="card-header bg-dark text-white small">📌 Cadastrar Novo Tópico (Mídia)</div>
+                    <div class="card-body bg-white">
+                        <form id="form-midia">
+                            <div class="mb-2">
+                                <label class="form-label small text-muted mb-1">Título da Obra</label>
+                                <input type="text" class="form-control form-control-sm" id="midia-titulo" required>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small text-muted mb-1">Gênero</label>
+                                <input type="text" class="form-control form-control-sm" id="midia-genero" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="form-label small text-muted mb-1">Ano</label>
+                                    <input type="number" class="form-control form-control-sm" id="midia-ano" required>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label small text-muted mb-1">Tipo</label>
+                                    <select class="form-select form-select-sm" id="midia-tipo">
+                                        <option value="Filme">Filme</option>
+                                        <option value="Serie">Série</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm w-100">Criar Tópico</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mb-4 square-forum-card shadow-sm">
+                    <div class="card-header bg-dark text-white small">💬 Responder ao Tópico (Deixar Avaliação)</div>
+                    <div class="card-body bg-white">
+                        <form id="form-avaliacao">
+                            <div class="mb-2">
+                                <label class="form-label small text-muted mb-1">Selecione o Usuário</label>
+                                <select class="form-select form-select-sm" id="av-usuario" required>
+                                    </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small text-muted mb-1">Selecione a Mídia</label>
+                                <select class="form-select form-select-sm" id="av-midia" required>
+                                    </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small text-muted mb-1">Nota (1 a 5 Estrelas)</label>
+                                <select class="form-select form-select-sm" id="av-nota">
+                                    <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                                    <option value="4">⭐⭐⭐⭐ (4)</option>
+                                    <option value="3">⭐⭐⭐ (3)</option>
+                                    <option value="2">⭐⭐ (2)</option>
+                                    <option value="1">⭐ (1)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small text-muted mb-1">Mensagem / Comentário</label>
+                                <textarea class="form-control form-control-sm font-monospace" id="av-comentario" rows="3" required placeholder="Escreva sua opinião..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary btn-sm w-100">Postar Resposta</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div> </div> </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
