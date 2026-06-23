@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://trackit-backend-mhl5.onrender.com/";
 
 document.addEventListener("DOMContentLoaded", () => {
     carregarUsuarios();   
